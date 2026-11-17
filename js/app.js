@@ -30,11 +30,7 @@ function showMessage(message, type = "error") {
 
     messageBox.className = "message-box";
 
-    if (type === "error") {
-
-        messageBox.classList.add("error");
-
-    }
+    messageBox.classList.add(type);
 
     messageBox.classList.remove("hidden");
 
