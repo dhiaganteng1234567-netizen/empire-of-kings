@@ -4,7 +4,7 @@
 ===================================== */
 
 const SUPABASE_URL =
-  "https://htujheimwwkaoirebfon.supabase.co";
+  "https://https://htujheimwwkaoirebfon.supabase.co";
 
 
 const SUPABASE_KEY =
