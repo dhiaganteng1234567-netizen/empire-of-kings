@@ -8,7 +8,7 @@ const SUPABASE_URL =
 
 
 const SUPABASE_KEY =
-    "sb_publishable_N2-MFHhtbzfTkI0HbfM67g_ylTdMTbV";
+    "sb_publishable_8kglC2CDHTRlyjhEX0RluQ_8HddSpbU";
 
 
 const supabaseClient =
