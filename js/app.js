@@ -45,6 +45,24 @@ function hideMessage() {
 
 
 
+
+/* =====================================
+   CONNECTION PROBE (DEBUG)
+===================================== */
+
+document.addEventListener("securitypolicyviolation", function(e) {
+
+    window.__cspViolation =
+        e.violatedDirective + " blocked " + e.blockedURI;
+
+});
+
+fetch(SUPABASE_URL + "/auth/v1/settings", {
+    headers: { apikey: SUPABASE_KEY }
+})
+.then(function(r) { window.__probeResult = "HTTP " + r.status; })
+.catch(function(e) { window.__probeResult = "FAILED " + e.name + ": " + e.message; });
+
 /* =====================================
    ERROR DETAIL (DEBUG)
 ===================================== */
@@ -64,6 +82,10 @@ function describeError(error) {
     parts.push("[supabase: " + (typeof supabaseClient !== "undefined" ? "loaded" : "NOT LOADED") + "]");
 
     parts.push("[online: " + navigator.onLine + "]");
+
+    if (window.__cspViolation) parts.push("[CSP BLOCK: " + window.__cspViolation + "]");
+
+    if (window.__probeResult) parts.push("[probe: " + window.__probeResult + "]");
 
     return parts.join(" ");
 
