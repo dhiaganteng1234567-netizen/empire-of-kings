@@ -44,6 +44,31 @@ function hideMessage() {
 }
 
 
+
+/* =====================================
+   ERROR DETAIL (DEBUG)
+===================================== */
+
+function describeError(error) {
+
+    const parts = [];
+
+    parts.push(error && error.message ? error.message : String(error));
+
+    if (error && error.name) parts.push("[" + error.name + "]");
+
+    if (error && error.status) parts.push("[status " + error.status + "]");
+
+    parts.push("[site: " + window.location.origin + "]");
+
+    parts.push("[supabase: " + (typeof supabaseClient !== "undefined" ? "loaded" : "NOT LOADED") + "]");
+
+    parts.push("[online: " + navigator.onLine + "]");
+
+    return parts.join(" ");
+
+}
+
 /* =====================================
    AUTH TABS
 ===================================== */
@@ -237,7 +262,7 @@ registerForm.addEventListener("submit", async function(event) {
 
     catch(error) {
 
-        showMessage(error.message);
+        showMessage(describeError(error));
 
     }
 
@@ -307,7 +332,7 @@ loginForm.addEventListener("submit", async function(event) {
 
     catch(error) {
 
-        showMessage(error.message);
+        showMessage(describeError(error));
 
     }
 
